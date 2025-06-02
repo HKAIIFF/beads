@@ -6,7 +6,7 @@
     <title>FortuneBeads - AI驱动的命运珠材精准匹配系统</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Dancing+Script:wght@600;700&family=Orbitron:wght@700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #c9a96e;
@@ -15,6 +15,8 @@
             --mystery: #4a148c;
             --wisdom: #2e7d32;
             --energy: #ff6f00;
+            --fortune-red: #DC143C;
+            --fortune-green: #228B22;
         }
         
         body {
@@ -498,6 +500,98 @@
             transform: translateX(0);
         }
         
+        /* 神圣珠材数据库样式 */
+        .material-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .material-card {
+            background: linear-gradient(145deg, rgba(26, 32, 44, 0.8), rgba(45, 55, 72, 0.6));
+            border: 1px solid rgba(201, 169, 110, 0.3);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .material-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.25);
+        }
+        
+        .material-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .rarity-badge {
+            background: linear-gradient(135deg, var(--fortune-red), var(--accent));
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        
+        .energy-frequency {
+            background: linear-gradient(135deg, var(--mystery), var(--energy));
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .material-properties {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .property-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+        }
+        
+        .material-level {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .level-basic {
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+        }
+        
+        .level-advanced {
+            background: linear-gradient(135deg, #d32f2f, #f44336);
+        }
+        
+        .level-sacred {
+            background: linear-gradient(135deg, #4a148c, #6a1b9a);
+        }
+        
         @media (max-width: 768px) {
             .desktop-nav {
                 display: none;
@@ -528,6 +622,10 @@
             .scenario-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
+            }
+            
+            .material-showcase {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -963,10 +1061,10 @@
         </div>
     </section>
 
-    <!-- 珠材科学展示 -->
+    <!-- 神圣珠材数据库 -->
     <section id="beads" class="py-20 bg-gray-900 bg-opacity-50">
         <div class="container mx-auto px-4">
-            <h2 class="section-title gradient-text">3000+全球珠材科学数据库</h2>
+            <h2 class="section-title gradient-text">神圣珠材数据库</h2>
             
             <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
                 <div>
@@ -1000,94 +1098,173 @@
             </div>
             
             <!-- 珠材等级展示 -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                <!-- 入门级珠材 -->
-                <div class="card p-6">
-                    <h3 class="text-xl font-bold mb-4 text-center">入门系列珠材</h3>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="text-center">
-                            <img src="https://images.unsplash.com/photo-1556301750-d9b6a62aac70?q=80&w=1974&auto=format&fit=crop" alt="紫水晶珠" class="w-16 h-16 rounded-full mx-auto mb-2 object-cover">
-                            <div class="text-sm font-medium">紫水晶</div>
-                            <div class="text-xs text-gray-400">智慧・直觉</div>
-                        </div>
-                        <div class="text-center">
-                            <img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?q=80&w=1935&auto=format&fit=crop" alt="玫瑰石英珠" class="w-16 h-16 rounded-full mx-auto mb-2 object-cover">
-                            <div class="text-sm font-medium">粉水晶</div>
-                            <div class="text-xs text-gray-400">爱情・和谐</div>
-                        </div>
-                        <div class="text-center">
-                            <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?q=80&w=1935&auto=format&fit=crop" alt="黑曜石珠" class="w-16 h-16 rounded-full mx-auto mb-2 object-cover">
-                            <div class="text-sm font-medium">黑曜石</div>
-                            <div class="text-xs text-gray-400">保护・稳定</div>
-                        </div>
-                        <div class="text-center">
-                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=2070&auto=format&fit=crop" alt="白水晶珠" class="w-16 h-16 rounded-full mx-auto mb-2 object-cover">
-                            <div class="text-sm font-medium">白水晶</div>
-                            <div class="text-xs text-gray-400">净化・聚焦</div>
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold mb-8 text-center">入门级珠材</h3>
+                <div class="material-showcase">
+                    <div class="material-card">
+                        <div class="material-level level-basic">入门级</div>
+                        <div class="material-image" style="background-image: url('https://images.unsplash.com/photo-1556301750-d9b6a62aac70?q=80&w=1974&auto=format&fit=crop')"></div>
+                        <h3 class="text-xl font-bold mb-2">紫水晶</h3>
+                        <p class="text-gray-300 mb-3">智慧・直觉</p>
+                        <div class="rarity-badge">R6 稀有</div>
+                        <div class="energy-frequency">能量频率: 528Hz</div>
+                        <div class="material-properties">
+                            <div class="property-item">木元素</div>
+                            <div class="property-item">增强智慧</div>
                         </div>
                     </div>
-                    <div class="text-center mt-4 text-sm text-gray-400">
-                        价格区间：$299 - $999
-                    </div>
-                </div>
-
-                <!-- 进阶级珠材 -->
-                <div class="card p-6">
-                    <h3 class="text-xl font-bold mb-4 text-center">进阶系列珠材</h3>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="text-center">
-                            <img src="https://images.unsplash.com/photo-1544995407-33d0b2ec2be8?q=80&w=2070&auto=format&fit=crop" alt="南红玛瑙珠" class="w-16 h-16 rounded-full mx-auto mb-2 object-cover">
-                            <div class="text-sm font-medium">南红玛瑙</div>
-                            <div class="text-xs text-gray-400">活力・勇气</div>
-                        </div>
-                        <div class="text-center">
-                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop" alt="翡翠珠" class="w-16 h-16 rounded-full mx-auto mb-2 object-cover">
-                            <div class="text-sm font-medium">翡翠</div>
-                            <div class="text-xs text-gray-400">平衡・成长</div>
-                        </div>
-                        <div class="text-center">
-                            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=2070&auto=format&fit=crop" alt="钛晶珠" class="w-16 h-16 rounded-full mx-auto mb-2 object-cover">
-                            <div class="text-sm font-medium">钛晶</div>
-                            <div class="text-xs text-gray-400">财运・决断</div>
-                        </div>
-                        <div class="text-center">
-                            <img src="https://images.unsplash.com/photo-1574263867128-e7b1c5f1d1b7?q=80&w=2070&auto=format&fit=crop" alt="绿幽灵珠" class="w-16 h-16 rounded-full mx-auto mb-2 object-cover">
-                            <div class="text-sm font-medium">绿幽灵</div>
-                            <div class="text-xs text-gray-400">事业・创新</div>
+                    
+                    <div class="material-card">
+                        <div class="material-level level-basic">入门级</div>
+                        <div class="material-image" style="background-image: url('https://images.unsplash.com/photo-1602173574767-37ac01994b2a?q=80&w=1935&auto=format&fit=crop')"></div>
+                        <h3 class="text-xl font-bold mb-2">粉水晶</h3>
+                        <p class="text-gray-300 mb-3">爱情・和谐</p>
+                        <div class="rarity-badge">R5 普通</div>
+                        <div class="energy-frequency">能量频率: 432Hz</div>
+                        <div class="material-properties">
+                            <div class="property-item">火元素</div>
+                            <div class="property-item">增强情感</div>
                         </div>
                     </div>
-                    <div class="text-center mt-4 text-sm text-gray-400">
-                        价格区间：$1,000 - $9,999
+                    
+                    <div class="material-card">
+                        <div class="material-level level-basic">入门级</div>
+                        <div class="material-image" style="background-image: url('https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?q=80&w=1935&auto=format&fit=crop')"></div>
+                        <h3 class="text-xl font-bold mb-2">黑曜石</h3>
+                        <p class="text-gray-300 mb-3">保护・稳定</p>
+                        <div class="rarity-badge">R4 常见</div>
+                        <div class="energy-frequency">能量频率: 396Hz</div>
+                        <div class="material-properties">
+                            <div class="property-item">土元素</div>
+                            <div class="property-item">防护能量</div>
+                        </div>
+                    </div>
+                    
+                    <div class="material-card">
+                        <div class="material-level level-basic">入门级</div>
+                        <div class="material-image" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=2070&auto=format&fit=crop')"></div>
+                        <h3 class="text-xl font-bold mb-2">白水晶</h3>
+                        <p class="text-gray-300 mb-3">净化・聚焦</p>
+                        <div class="rarity-badge">R5 普通</div>
+                        <div class="energy-frequency">能量频率: 741Hz</div>
+                        <div class="material-properties">
+                            <div class="property-item">金元素</div>
+                            <div class="property-item">净化能量</div>
+                        </div>
                     </div>
                 </div>
-
-                <!-- 神圣级珠材 -->
-                <div class="card p-6 border-2 border-yellow-400">
-                    <h3 class="text-xl font-bold mb-4 text-center text-yellow-400">神圣收藏级珠材</h3>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="text-center">
-                            <img src="https://images.unsplash.com/photo-1594736797933-d0401ba04871?q=80&w=2071&auto=format&fit=crop" alt="缅甸红宝石珠" class="w-16 h-16 rounded-full mx-auto mb-2 object-cover">
-                            <div class="text-sm font-medium">缅甸红宝石</div>
-                            <div class="text-xs text-gray-400">权力・激情</div>
-                        </div>
-                        <div class="text-center">
-                            <img src="https://images.unsplash.com/photo-1548962127-0a56b2de9291?q=80&w=2070&auto=format&fit=crop" alt="克什米尔蓝宝石珠" class="w-16 h-16 rounded-full mx-auto mb-2 object-cover">
-                            <div class="text-sm font-medium">克什米尔蓝宝石</div>
-                            <div class="text-xs text-gray-400">智慧・高贵</div>
-                        </div>
-                        <div class="text-center">
-                            <img src="https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?q=80&w=1965&auto=format&fit=crop" alt="古沉香珠" class="w-16 h-16 rounded-full mx-auto mb-2 object-cover">
-                            <div class="text-sm font-medium">千年沉香</div>
-                            <div class="text-xs text-gray-400">修行・静心</div>
-                        </div>
-                        <div class="text-center">
-                            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?q=80&w=2026&auto=format&fit=crop" alt="西藏天珠" class="w-16 h-16 rounded-full mx-auto mb-2 object-cover">
-                            <div class="text-sm font-medium">古法天珠</div>
-                            <div class="text-xs text-gray-400">护佑・转运</div>
+            </div>
+            
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold mb-8 text-center">进阶级珠材</h3>
+                <div class="material-showcase">
+                    <div class="material-card">
+                        <div class="material-level level-advanced">进阶级</div>
+                        <div class="material-image" style="background-image: url('https://images.unsplash.com/photo-1544995407-33d0b2ec2be8?q=80&w=2070&auto=format&fit=crop')"></div>
+                        <h3 class="text-xl font-bold mb-2">南红玛瑙</h3>
+                        <p class="text-gray-300 mb-3">活力・勇气</p>
+                        <div class="rarity-badge">R7 珍贵</div>
+                        <div class="energy-frequency">能量频率: 369Hz</div>
+                        <div class="material-properties">
+                            <div class="property-item">火元素</div>
+                            <div class="property-item">增强活力</div>
                         </div>
                     </div>
-                    <div class="text-center mt-4 text-sm text-yellow-400">
-                        价格区间：$50,000 - $1,000,000+
+                    
+                    <div class="material-card">
+                        <div class="material-level level-advanced">进阶级</div>
+                        <div class="material-image" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop')"></div>
+                        <h3 class="text-xl font-bold mb-2">翡翠</h3>
+                        <p class="text-gray-300 mb-3">平衡・成长</p>
+                        <div class="rarity-badge">R8 稀有</div>
+                        <div class="energy-frequency">能量频率: 594Hz</div>
+                        <div class="material-properties">
+                            <div class="property-item">木元素</div>
+                            <div class="property-item">促进平衡</div>
+                        </div>
+                    </div>
+                    
+                    <div class="material-card">
+                        <div class="material-level level-advanced">进阶级</div>
+                        <div class="material-image" style="background-image: url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=2070&auto=format&fit=crop')"></div>
+                        <h3 class="text-xl font-bold mb-2">钛晶</h3>
+                        <p class="text-gray-300 mb-3">财运・决断</p>
+                        <div class="rarity-badge">R7 珍贵</div>
+                        <div class="energy-frequency">能量频率: 639Hz</div>
+                        <div class="material-properties">
+                            <div class="property-item">金元素</div>
+                            <div class="property-item">增强财运</div>
+                        </div>
+                    </div>
+                    
+                    <div class="material-card">
+                        <div class="material-level level-advanced">进阶级</div>
+                        <div class="material-image" style="background-image: url('https://images.unsplash.com/photo-1574263867128-e7b1c5f1d1b7?q=80&w=2070&auto=format&fit=crop')"></div>
+                        <h3 class="text-xl font-bold mb-2">绿幽灵</h3>
+                        <p class="text-gray-300 mb-3">事业・创新</p>
+                        <div class="rarity-badge">R8 稀有</div>
+                        <div class="energy-frequency">能量频率: 528Hz</div>
+                        <div class="material-properties">
+                            <div class="property-item">木元素</div>
+                            <div class="property-item">事业助力</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold mb-8 text-center">神圣收藏级珠材</h3>
+                <div class="material-showcase">
+                    <div class="material-card">
+                        <div class="material-level level-sacred">神圣级</div>
+                        <div class="material-image" style="background-image: url('https://images.unsplash.com/photo-1594736797933-d0401ba04871?q=80&w=2071&auto=format&fit=crop')"></div>
+                        <h3 class="text-xl font-bold mb-2">缅甸红宝石</h3>
+                        <p class="text-gray-300 mb-3">权力・激情</p>
+                        <div class="rarity-badge">R10 极稀有</div>
+                        <div class="energy-frequency">能量频率: 852Hz</div>
+                        <div class="material-properties">
+                            <div class="property-item">火元素</div>
+                            <div class="property-item">增强权威</div>
+                        </div>
+                    </div>
+                    
+                    <div class="material-card">
+                        <div class="material-level level-sacred">神圣级</div>
+                        <div class="material-image" style="background-image: url('https://images.unsplash.com/photo-1548962127-0a56b2de9291?q=80&w=2070&auto=format&fit=crop')"></div>
+                        <h3 class="text-xl font-bold mb-2">克什米尔蓝宝石</h3>
+                        <p class="text-gray-300 mb-3">智慧・高贵</p>
+                        <div class="rarity-badge">R10 极稀有</div>
+                        <div class="energy-frequency">能量频率: 963Hz</div>
+                        <div class="material-properties">
+                            <div class="property-item">水元素</div>
+                            <div class="property-item">增强智慧</div>
+                        </div>
+                    </div>
+                    
+                    <div class="material-card">
+                        <div class="material-level level-sacred">神圣级</div>
+                        <div class="material-image" style="background-image: url('https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?q=80&w=1965&auto=format&fit=crop')"></div>
+                        <h3 class="text-xl font-bold mb-2">千年沉香</h3>
+                        <p class="text-gray-300 mb-3">修行・静心</p>
+                        <div class="rarity-badge">R9 极稀有</div>
+                        <div class="energy-frequency">能量频率: 174Hz</div>
+                        <div class="material-properties">
+                            <div class="property-item">土元素</div>
+                            <div class="property-item">静心修行</div>
+                        </div>
+                    </div>
+                    
+                    <div class="material-card">
+                        <div class="material-level level-sacred">神圣级</div>
+                        <div class="material-image" style="background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?q=80&w=2026&auto=format&fit=crop')"></div>
+                        <h3 class="text-xl font-bold mb-2">古法天珠</h3>
+                        <p class="text-gray-300 mb-3">护佑・转运</p>
+                        <div class="rarity-badge">R10 极稀有</div>
+                        <div class="energy-frequency">能量频率: 999Hz</div>
+                        <div class="material-properties">
+                            <div class="property-item">综合元素</div>
+                            <div class="property-item">全方位护佑</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1238,7 +1415,7 @@
                     </div>
                     <h3 class="text-xl font-bold mb-4">职业发展关键点</h3>
                     <div class="mb-4">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop" alt="专业女性" class="w-16 h-16 rounded-full mb-3">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop" alt="专业女性" class="w-16 h-16 rounded-full mb-3">
                         <p class="text-gray-300 text-sm mb-3">
                             <strong>场景：</strong>重要晋升面试、关键项目展示、职业转型
                         </p>
@@ -1263,7 +1440,7 @@
                     </div>
                     <h3 class="text-xl font-bold mb-4">创业与商业决策</h3>
                     <div class="mb-4">
-                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop" alt="企业家" class="w-16 h-16 rounded-full mb-3">
+                        <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?q=80&w=2070&auto=format&fit=crop" alt="企业家" class="w-16 h-16 rounded-full mb-3">
                         <p class="text-gray-300 text-sm mb-3">
                             <strong>场景：</strong>商业谈判、融资路演、重大商业决策
                         </p>
@@ -1288,7 +1465,7 @@
                     </div>
                     <h3 class="text-xl font-bold mb-4">情感关系突破</h3>
                     <div class="mb-4">
-                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop" alt="女性肖像" class="w-16 h-16 rounded-full mb-3">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop" alt="女性肖像" class="w-16 h-16 rounded-full mb-3">
                         <p class="text-gray-300 text-sm mb-3">
                             <strong>场景：</strong>重要约会、关系修复、家庭和谐
                         </p>
@@ -1313,7 +1490,7 @@
                     </div>
                     <h3 class="text-xl font-bold mb-4">个人成长转型</h3>
                     <div class="mb-4">
-                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop" alt="男性思考" class="w-16 h-16 rounded-full mb-3">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop" alt="男性思考" class="w-16 h-16 rounded-full mb-3">
                         <p class="text-gray-300 text-sm mb-3">
                             <strong>场景：</strong>学习新技能、突破心理限制、适应重大生活变化
                         </p>
@@ -1417,10 +1594,10 @@
                 <!-- 入门系列 -->
                 <div class="pricing-card">
                     <div class="text-center mb-6">
-                        <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=2070&auto=format&fit=crop" alt="入门手串" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+                        <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?q=80&w=600&auto=format&fit=crop" alt="入门手串" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
                     </div>
                     <h3 class="text-2xl font-bold mb-4">入门系列</h3>
-                    <div class="text-4xl font-bold mb-6 gradient-text">$299<span class="text-xl text-gray-400">起</span></div>
+                    <div class="text-4xl font-bold mb-6 gradient-text">¥2,399<span class="text-xl text-gray-400">起</span></div>
                     <p class="text-gray-300 mb-6">体验AI珠材匹配的神奇力量</p>
                     <ul class="space-y-3 mb-8 text-left">
                         <li class="flex items-center">
@@ -1452,10 +1629,10 @@
                 <!-- 进阶系列 -->
                 <div class="pricing-card premium">
                     <div class="text-center mb-6">
-                        <img src="https://images.unsplash.com/photo-1544995407-33d0b2ec2be8?q=80&w=2070&auto=format&fit=crop" alt="进阶手串" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+                        <img src="https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?q=80&w=600&auto=format&fit=crop" alt="进阶手串" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
                     </div>
                     <h3 class="text-2xl font-bold mb-4">进阶系列</h3>
-                    <div class="text-4xl font-bold mb-6 gradient-text">$2,999<span class="text-xl text-gray-400">起</span></div>
+                    <div class="text-4xl font-bold mb-6 gradient-text">¥4,999<span class="text-xl text-gray-400">起</span></div>
                     <p class="text-gray-300 mb-6">深度个性化能量优化方案</p>
                     <ul class="space-y-3 mb-8 text-left">
                         <li class="flex items-center">
@@ -1491,10 +1668,10 @@
                 <!-- 收藏系列 -->
                 <div class="pricing-card">
                     <div class="text-center mb-6">
-                        <img src="https://images.unsplash.com/photo-1594736797933-d0401ba04871?q=80&w=2071&auto=format&fit=crop" alt="收藏手串" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+                        <img src="https://images.unsplash.com/photo-1580554530778-ca36943938b2?q=80&w=600&auto=format&fit=crop" alt="收藏手串" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
                     </div>
                     <h3 class="text-2xl font-bold mb-4">收藏系列</h3>
-                    <div class="text-4xl font-bold mb-6 gradient-text">$50,000<span class="text-xl text-gray-400">起</span></div>
+                    <div class="text-4xl font-bold mb-6 gradient-text">¥79,999<span class="text-xl text-gray-400">起</span></div>
                     <p class="text-gray-300 mb-6">博物馆级稀有材料专属定制</p>
                     <ul class="space-y-3 mb-8 text-left">
                         <li class="flex items-center">
@@ -1542,7 +1719,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="testimonial-card">
                     <div class="text-center mb-6">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop" alt="陈女士" class="user-avatar mx-auto">
+                        <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0e160de?q=80&w=1974&auto=format&fit=crop" alt="陈女士" class="user-avatar mx-auto">
                         <h3 class="text-lg font-bold mt-3">陈女士</h3>
                         <p class="text-blue-400 text-sm">科技企业高管</p>
                     </div>
@@ -1560,7 +1737,7 @@
                 
                 <div class="testimonial-card">
                     <div class="text-center mb-6">
-                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop" alt="王先生" class="user-avatar mx-auto">
+                        <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?q=80&w=1998&auto=format&fit=crop" alt="王先生" class="user-avatar mx-auto">
                         <h3 class="text-lg font-bold mt-3">王先生</h3>
                         <p class="text-blue-400 text-sm">创业公司CEO</p>
                     </div>
@@ -1578,7 +1755,7 @@
                 
                 <div class="testimonial-card">
                     <div class="text-center mb-6">
-                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop" alt="李女士" class="user-avatar mx-auto">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop" alt="李女士" class="user-avatar mx-auto">
                         <h3 class="text-lg font-bold mt-3">李女士</h3>
                         <p class="text-blue-400 text-sm">心理咨询师</p>
                     </div>
@@ -1646,7 +1823,7 @@
                 </div>
                 
                 <div class="card p-6 text-center">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop" alt="命理专家" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                    <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?q=80&w=1998&auto=format&fit=crop" alt="命理专家" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
                     <h3 class="text-lg font-bold mb-2">Master Liu</h3>
                     <p class="text-blue-400 text-sm mb-3">传统命理学宗师</p>
                     <p class="text-gray-400 text-xs">40年命理研究经验，师承正宗玄空飞星派，精通八字、奇门遁甲</p>
@@ -1660,7 +1837,7 @@
                 </div>
                 
                 <div class="card p-6 text-center">
-                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop" alt="文化专家" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop" alt="文化专家" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
                     <h3 class="text-lg font-bold mb-2">Prof. Raj Patel</h3>
                     <p class="text-blue-400 text-sm mb-3">跨文化研究专家</p>
                     <p class="text-gray-400 text-xs">哈佛大学比较宗教学教授，研究全球传统智慧的现代应用</p>
@@ -1943,4 +2120,3 @@
     </script>
 </body>
 </html>
-                            
